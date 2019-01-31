@@ -10,6 +10,11 @@
 
     <include package=".browser" />
 
+    <adapter for="imio.project.pst.content.action.IPSTAction"
+             factory=".adapters.SendableAnnexes"
+             provides="imio.pm.wsclient.interfaces.ISendableAnnexesToPM" />
+
+
     <genericsetup:registerProfile
         name="default"
         title="imio.project.soap2pm"

@@ -14,7 +14,15 @@
         for="imio.project.pst.content.action.IPSTAction"
         name="ProjectWSClient"
         permission="zope2.Public"
-        class=".views.ProjectSoapClientView"
+        class=".views.ProjectActionSoapClientView"
     />
+
+    <browser:page
+        for="collective.task.interfaces.ITaskContent"
+        name="ProjectWSClient"
+        permission="zope2.Public"
+        class=".views.ProjectTaskSoapClientView"
+    />
+
 
 </configure>
