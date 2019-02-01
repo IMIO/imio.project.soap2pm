@@ -55,4 +55,6 @@ class ProjectTaskSoapClientView(ProjectSoapClientView):
         return u''.join(out)
 
     def description(self):
-        return safe_unicode(self.context.task_description.output)
+        if self.context.task_description:
+            return safe_unicode(self.context.task_description.output)
+        return None
