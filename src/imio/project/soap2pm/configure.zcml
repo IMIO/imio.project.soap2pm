@@ -14,7 +14,6 @@
              factory=".adapters.SendableAnnexes"
              provides="imio.pm.wsclient.interfaces.ISendableAnnexesToPM" />
 
-
     <genericsetup:registerProfile
         name="default"
         title="imio.project.soap2pm"
