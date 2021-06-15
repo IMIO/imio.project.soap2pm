@@ -22,6 +22,7 @@ class ProjectSoapClientView(BrowserView):
         out.append(u"<p>OS: %s</p>" % object_link(self.os))
         out.append(u"<p>OO: %s</p>" % object_link(self.oo))
         out.append(u"<p>Action: %s</p>" % object_link(self.action))
+        hasattr(self, 'sa') and out.append(u"<p>Sous-action: %s</p>" % object_link(self.sa))
         return out
 
     def description(self):
@@ -40,12 +41,29 @@ class ProjectActionSoapClientView(ProjectSoapClientView):
         return u''.join(self.common_detailed_description())
 
 
+class ProjectSubActionSoapClientView(ProjectSoapClientView):
+
+    def __init__(self, context, request):
+        super(ProjectSubActionSoapClientView, self).__init__(context, request)
+        self.sa = self.context
+        self.action = self.sa.aq_parent
+        self.oo = self.action.aq_parent
+        self.os = self.oo.aq_parent
+
+    def detailed_description(self):
+        return u''.join(self.common_detailed_description())
+
+
 class ProjectTaskSoapClientView(ProjectSoapClientView):
 
     def __init__(self, context, request):
         super(ProjectTaskSoapClientView, self).__init__(context, request)
         self.adapted = ITaskMethods(self.context)
-        self.action = self.adapted.get_highest_task_parent(task=False)
+        if self.adapted.get_highest_task_parent(task=False).portal_type == 'pstsubaction':
+            self.sa = self.adapted.get_highest_task_parent(task=False)
+            self.action = self.sa.aq_parent
+        else:
+            self.action = self.adapted.get_highest_task_parent(task=False)
         self.oo = self.action.aq_parent
         self.os = self.oo.aq_parent
 
