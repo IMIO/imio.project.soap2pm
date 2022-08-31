@@ -12,6 +12,6 @@ class SendableAnnexes(object):
     def get(self):
         pc = api.portal.get_tool('portal_catalog')
         res = []
-        for brain in pc(portal_type='File', path={'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}):
+        for brain in pc(portal_type='annex', path={'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}):
             res.append({'title': brain.Title, 'UID': brain.UID})
         return res

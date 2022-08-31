@@ -5,6 +5,8 @@ Changelog
 0.2 (unreleased)
 ----------------
 
+- Update PM sendable annexes type
+  [fngaha]
 - Fixed shift of PST structure in detailed description
   [fngaha]
 
