@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.2 (unreleased)
+0.2 (2022-08-31)
 ----------------
 
 - Update PM sendable annexes type
